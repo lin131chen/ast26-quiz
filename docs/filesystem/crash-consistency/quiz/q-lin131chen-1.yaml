@@ -1,5 +1,5 @@
 author: lin131chen
-date: 2026-05-17
+date: 2026-05-18
 question: |
   某 filesystem 採用 delayed allocation。
   某應用程式在寫入一個 10MB 檔案後，立即呼叫 fsync()。之後系統發生非預期 crash。假設 filesystem 採用標準 writeback 與 metadata 更新機制，下列何者最可能發生？
