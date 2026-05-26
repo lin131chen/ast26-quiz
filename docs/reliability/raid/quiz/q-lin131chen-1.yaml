@@ -13,7 +13,7 @@ options:
     correct: true
     explanation: |
       RAID-5 可以容忍單一 disk failure。rebuild 時，系統需要讀取同一 stripe 中其他 data blocks 與 parity blocks，以重建故障 disk 上的內容。
-      這會消耗 disk bandwidth，影響前台 read/write 效能。同時，在 rebuild 完成前若再有另一顆 disk 故障，就可能超出 RAID-5 的容錯能力而造成資料遺失。
+      這會消耗 disk bandwidth，影響前台 read/write 效能。同時，在 rebuild 完成前若再有另一顆 disk 故障，就會超出 RAID-5 的容錯能力而造成資料遺失。
 
   - text: "rebuild 只需要讀取 parity disk，因為 parity disk 已經包含所有遺失資料的完整副本。"
     explanation: |
