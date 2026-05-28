@@ -5,15 +5,6 @@ question: |
   下列何者最合理地解釋此現象？
 
 options:
-  - text: "，但可能讓 small random access 產生額外 I/O overhead。"
-    correct: true
-    explanation: |
-      
-      
-      若 chunk size 過小，例如小於 request size，單次 request 可能橫跨多個 chunks，
-      使原本可能只需一顆 disk 處理的 request 涉及多顆 disks，
-      進而增加排程、同步等待與額外 I/O 成本。
-options:
   - text: "較小的 chunk size 可提升大型 sequential access 的 parallelism，但可能讓 small random access 產生額外 I/O overhead。"
     correct: true
     explanation: |
