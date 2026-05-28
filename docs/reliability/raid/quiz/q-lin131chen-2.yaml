@@ -5,10 +5,19 @@ question: |
   下列何者最合理地解釋此現象？
 
 options:
-  - text: "較小的 chunk size 讓大型 sequential request 更容易跨越多顆 disks，因此可提升 parallelism；但對 small random access 而言，當 chunk size 小於 small random request 的 size 時，原本可能只需一顆 disk 處理的 request 反而可能跨多顆 disks，造成額外 I/O overhead"
+  - text: "，但可能讓 small random access 產生額外 I/O overhead。"
     correct: true
     explanation: |
-      大型 sequential access 可以從較小 chunk size 得到平行化效益。但 small random access 通常不需要跨 disk 平行化；若 chunk size 過小，反而可能使一次小 request 涉及多顆 disks，增加額外 I/O 成本。
+      
+      
+      若 chunk size 過小，例如小於 request size，單次 request 可能橫跨多個 chunks，
+      使原本可能只需一顆 disk 處理的 request 涉及多顆 disks，
+      進而增加排程、同步等待與額外 I/O 成本。
+options:
+  - text: "較小的 chunk size 可提升大型 sequential access 的 parallelism，但可能讓 small random access 產生額外 I/O overhead。"
+    correct: true
+    explanation: |
+      較小的 chunk size 讓大型 sequential request 更容易跨越多顆 disks，因此能利用多顆 disks 平行讀取，提升 throughput。但對 small random access 而言，通常不需要跨 disk 平行化。但當 chunk size 小於 small random request 的 size 時，原本可能只需一顆 disk 處理的 request 反而可能跨多顆 disks，造成額外 I/O 成本。
 
   - text: "chunk size 越小，RAID-0 的可靠性越高，因為每份資料會自動複製到更多 disks。"
     explanation: |
